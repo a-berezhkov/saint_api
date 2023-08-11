@@ -1,12 +1,84 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
-// Test DB
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL_TEST")
+}
+
+type TaskOneFromManyAnswers {
+  q1 TaskOneFromManyAnswersQ1
+  q2 TaskOneFromManyAnswersQ2
+}
+
+type TaskOneFromManyAnswersQ1 {
+  is_correct Boolean
+  title      String
+}
+
+type TaskOneFromManyAnswersQ2 {
+  is_correct Boolean
+  title      String
+}
+
+model course {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  desc  String
+  title String
+}
+
+model lecture {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  content          String
+  created_at       DateTime @db.Date
+  created_by       String
+  theme_content_id String
+  time_to_read     BigInt
+  title            String
+  updated_at       DateTime @db.Date
+}
+
+model task {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  theme_content_id String
+  type             String
+}
+
+model task_one_from_many {
+  id      String                 @id @default(auto()) @map("_id") @db.ObjectId
+  answers TaskOneFromManyAnswers
+  content String
+  task_id String
+  title   String
+}
+
+model theme {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  course_id String
+  order     Int
+  title     String
+}
+
+model theme_content {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  is_lecture Boolean
+  is_task    Boolean
+  order      Int
+  theme_id   String
+}
+
+model user {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  created_at String
+  email      String
+  login      String
+}
+
+model user_has_theme_content {
+  id               String  @id @default(auto()) @map("_id") @db.ObjectId
+  attemp_count     BigInt
+  is_complete      Boolean
+  theme_content_id String
+  user_id          String
 }
