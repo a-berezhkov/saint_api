@@ -35,4 +35,12 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+
+## Порядок действий для обновления схем БД
+
+1.  ` prisma db pull --force ` см. https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/mongodb/introspection-typescript-mongodb
+2. `prisma generate `
+3. создание сервиса и контроллеров - https://www.prisma.io/blog/nestjs-prisma-rest-api-7D056s1BmOL0#create-a-prisma-service
+
  

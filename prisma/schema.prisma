@@ -69,10 +69,16 @@ model theme_content {
 }
 
 model user {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  created_at String
-  email      String
-  login      String
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  accessToken  String
+  created_at   DateTime? @db.Date
+  email        String?
+  expires      DateTime? @db.Date
+  github_id    String?
+  google_id    String?
+  image_github String?
+  last_log_in  DateTime? @db.Date
+  name         String
 }
 
 model user_has_theme_content {
