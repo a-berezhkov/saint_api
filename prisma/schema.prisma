@@ -7,18 +7,52 @@ datasource db {
   url      = env("DATABASE_URL_TEST")
 }
 
-type TaskOneFromManyAnswers {
-  q1 TaskOneFromManyAnswersQ1
-  q2 TaskOneFromManyAnswersQ2
+type TaskAnswers {
+  q1 TaskAnswersQ1
+  q2 TaskAnswersQ2
+  q3 TaskAnswersQ3
+  q4 TaskAnswersQ4
+  q5 TaskAnswersQ5?
 }
 
-type TaskOneFromManyAnswersQ1 {
+type TaskAnswersQ1 {
   is_correct Boolean
   title      String
 }
 
-type TaskOneFromManyAnswersQ2 {
+type TaskAnswersQ2 {
   is_correct Boolean
+  title      String
+}
+
+type TaskAnswersQ3 {
+  is_correct Boolean
+  title      String
+}
+
+type TaskAnswersQ4 {
+  is_correct Boolean
+  title      String
+}
+
+type TaskAnswersQ5 {
+  is_correct Boolean
+  title      String
+}
+
+model chapter {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  course_id String
+  desc      String
+  order     Int
+  title     String
+}
+
+model chapter_level {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  chapter_id String
+  is_draft   Boolean
+  order      Int
   title      String
 }
 
@@ -33,39 +67,30 @@ model lecture {
   content          String
   created_at       DateTime @db.Date
   created_by       String
-  theme_content_id String
+  is_draft         Boolean
+  level_content_id String
   time_to_read     BigInt
   title            String
   updated_at       DateTime @db.Date
 }
 
+model level_content {
+  id               String  @id @default(auto()) @map("_id") @db.ObjectId
+  chapter_level_id String
+  lecture_id       String?
+  order            Int
+  task_id          String?
+}
+
 model task {
-  id               String @id @default(auto()) @map("_id") @db.ObjectId
-  theme_content_id String
-  type             String
-}
-
-model task_one_from_many {
-  id      String                 @id @default(auto()) @map("_id") @db.ObjectId
-  answers TaskOneFromManyAnswers
-  content String
-  task_id String
+  id      String       @id @default(auto()) @map("_id") @db.ObjectId
+  answers TaskAnswers?
+  content String?
+  correct String?
+  display String?
+  tags    String[]
   title   String
-}
-
-model theme {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  course_id String
-  order     Int
-  title     String
-}
-
-model theme_content {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  is_lecture Boolean
-  is_task    Boolean
-  order      Int
-  theme_id   String
+  type    String
 }
 
 model user {
@@ -81,10 +106,13 @@ model user {
   name         String
 }
 
-model user_has_theme_content {
-  id               String  @id @default(auto()) @map("_id") @db.ObjectId
+model user_level_stat {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
   attemp_count     BigInt
+  end_at           DateTime @db.Date
   is_complete      Boolean
-  theme_content_id String
+  level_content_id String
+  pause_at         DateTime @db.Date
+  start_at         DateTime @db.Date
   user_id          String
 }
