@@ -63,15 +63,14 @@ model course {
 }
 
 model lecture {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  content          String
-  created_at       DateTime @db.Date
-  created_by       String
-  is_draft         Boolean
-  level_content_id String
-  time_to_read     BigInt
-  title            String
-  updated_at       DateTime @db.Date
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  content      String
+  created_at   DateTime @db.Date
+  created_by   String
+  is_draft     Boolean
+  time_to_read BigInt
+  title        String
+  updated_at   DateTime @db.Date
 }
 
 model level_content {
