@@ -43,4 +43,11 @@ $ npm run test:cov
 2. `prisma generate `
 3. создание сервиса и контроллеров - https://www.prisma.io/blog/nestjs-prisma-rest-api-7D056s1BmOL0#create-a-prisma-service
 
+## CRUD
+
+```bash
+npx nest generate resource
+
+
+```
  
