@@ -94,10 +94,10 @@ model task {
 }
 
 model user {
-  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   accessToken  String
   created_at   DateTime? @db.Date
-  email        String
+  email        String?
   expires      DateTime? @db.Date
   github_id    String?
   google_id    String?
