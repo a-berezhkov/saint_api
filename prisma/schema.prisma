@@ -51,26 +51,26 @@ model chapter {
 model chapter_level {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
   chapter_id String
-  is_draft   Boolean
+  is_draft   Boolean? @default(value: true)
   order      Int
   title      String
 }
 
 model course {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
-  desc  String
+  desc  String?
   title String
 }
 
 model lecture {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   content      String
-  created_at   DateTime @db.Date
+  created_at   DateTime @db.Date @default(value: now())
   created_by   String
   is_draft     Boolean
-  time_to_read BigInt
+  time_to_read BigInt @default(value: 0)
   title        String
-  updated_at   DateTime @db.Date
+  updated_at   DateTime @db.Date @updatedAt
 }
 
 model level_content {
@@ -95,7 +95,7 @@ model task {
 model user {
   id           String    @id @default(auto()) @map("_id") @db.ObjectId
   accessToken  String
-  created_at   DateTime? @db.Date
+  created_at   DateTime? @db.Date @default(value: now())
   email        String
   expires      DateTime? @db.Date
   github_id    String?
@@ -107,11 +107,11 @@ model user {
 
 model user_level_stat {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  attemp_count     BigInt
-  end_at           DateTime @db.Date
-  is_complete      Boolean
+  attemp_count     BigInt? @default(value: 0)
+  end_at           DateTime? @db.Date
+  is_complete      Boolean? @default(value: false)
   level_content_id String
-  pause_at         DateTime @db.Date
-  start_at         DateTime @db.Date
+  pause_at         DateTime? @db.Date @updatedAt
+  start_at         DateTime? @db.Date @default(value: now())
   user_id          String
 }
