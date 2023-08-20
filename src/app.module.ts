@@ -6,9 +6,10 @@ import { PrismaModule } from './prisma/prisma.module';
 import { CourseModule } from './course/course.module';
 import { ChapterModule } from './chapter/chapter.module';
 import { LevelContentModule } from './level_content/level_content.module';
+import { UserLevelStatModule } from './user_level_stat/user_level_stat.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, CourseModule, ChapterModule, LevelContentModule],
+  imports: [UserModule, PrismaModule, CourseModule, ChapterModule, LevelContentModule, UserLevelStatModule],
   controllers: [AppController],
   providers: [AppService],
 })

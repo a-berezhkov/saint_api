@@ -41,8 +41,8 @@ type TaskAnswersQ5 {
 }
 
 type TaskWrongAnswers {
-  task_abstract_id String
-  answer           Json
+  task_abstract_id String?
+  answer           Json?
 }
 
 model chapter {
@@ -112,14 +112,14 @@ model user {
 
 model user_level_stat {
   id                 String           @id @default(auto()) @map("_id") @db.ObjectId
-  attemp_count       BigInt?          @default(value: 0)
+  attemp_count       Int?             @default(value: 0)
   end_at             DateTime?        @db.Date
   is_complete        Boolean?         @default(value: false)
   level_content_id   String
-  pause_at           DateTime[]
+  pause_at           DateTime[]       @default(value: [])
   start_at           DateTime?        @default(value: now()) @db.Date
   user_id            String
-  browsers           String[]
-  devices            String[]
-  task_wrong_answers TaskWrongAnswers
+  browsers           String[]         @default(value: [])
+  devices            String[]         @default(value: [])
+  task_wrong_answers TaskWrongAnswers?
 }
