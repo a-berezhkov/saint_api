@@ -68,7 +68,7 @@ model lecture {
   created_at   DateTime @db.Date @default(value: now())
   created_by   String
   is_draft     Boolean
-  time_to_read BigInt @default(value: 0)
+  time_to_read Int
   title        String
   updated_at   DateTime @db.Date @updatedAt
 }
