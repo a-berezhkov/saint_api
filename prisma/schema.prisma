@@ -16,41 +16,41 @@ type TaskAnswers {
 }
 
 type TaskAnswersQ1 {
-  is_correct Boolean
+  is_correct Boolean @default(value: false)
   title      String
 }
 
 type TaskAnswersQ2 {
-  is_correct Boolean
+  is_correct Boolean @default(value: false)
   title      String
 }
 
 type TaskAnswersQ3 {
-  is_correct Boolean
+  is_correct Boolean @default(value: false)
   title      String
 }
 
 type TaskAnswersQ4 {
-  is_correct Boolean
+  is_correct Boolean @default(value: false)
   title      String
 }
 
 type TaskAnswersQ5 {
-  is_correct Boolean
+  is_correct Boolean @default(value: false)
   title      String
 }
 
 model chapter {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
-  course_id String
-  desc      String
-  order     Int
+  course_id String  @db.ObjectId
+  desc      String?
+  order     Int @default(value: 0)
   title     String
 }
 
 model chapter_level {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  chapter_id String
+  chapter_id String @db.ObjectId
   is_draft   Boolean? @default(value: true)
   order      Int
   title      String
@@ -66,19 +66,19 @@ model lecture {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   content      String
   created_at   DateTime @db.Date @default(value: now())
-  created_by   String
-  is_draft     Boolean
-  time_to_read BigInt @default(value: 0)
+  created_by   String @db.ObjectId
+  is_draft     Boolean  @default(value: true)
+  time_to_read Int @default(value: 0)
   title        String
   updated_at   DateTime @db.Date @updatedAt
 }
 
 model level_content {
   id               String  @id @default(auto()) @map("_id") @db.ObjectId
-  chapter_level_id String
-  lecture_id       String?
-  order            Int
-  task_id          String?
+  chapter_level_id String @db.ObjectId
+  lecture_id       String? @db.ObjectId
+  order            Int @default(value: 0)
+  task_id          String? @db.ObjectId
 }
 
 model task {
