@@ -4,9 +4,13 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { LectureModule } from './lecture/lecture.module';
+import { CourseModule } from './course/course.module';
+import { ChapterModule } from './chapter/chapter.module';
+import { LevelContentModule } from './level_content/level_content.module';
+import { UserLevelStatModule } from './user_level_stat/user_level_stat.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, LectureModule],
+  imports: [UserModule, PrismaModule, CourseModule, ChapterModule, LevelContentModule, UserLevelStatModule,LectureModule],
   controllers: [AppController],
   providers: [AppService],
 })
