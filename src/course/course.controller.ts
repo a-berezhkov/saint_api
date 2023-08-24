@@ -6,7 +6,7 @@ import { ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { CourseEntity } from "./entities/course.entity";
 
 @Controller('course')
-@ApiTags('course')
+@ApiTags('Course')
 export class CourseController {
   constructor(private readonly courseService: CourseService) {}
 
