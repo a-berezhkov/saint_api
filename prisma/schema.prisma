@@ -65,12 +65,12 @@ model course {
 model lecture {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   content      String
-  created_at   DateTime @db.Date @default(value: now())
-  created_by   String @db.ObjectId
+  created_at   DateTime? @db.Date @default(value: now())
+  created_by   String? @db.ObjectId
   is_draft     Boolean  @default(value: true)
-  time_to_read Int @default(value: 0)
+  time_to_read Int? @default(value: 0)
   title        String
-  updated_at   DateTime @db.Date @updatedAt
+  updated_at   DateTime? @db.Date @updatedAt
 }
 
 model level_content {
@@ -107,11 +107,11 @@ model user {
 
 model user_level_stat {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  attemp_count     BigInt? @default(value: 0)
+  attemp_count     Int? @default(value: 0)
   end_at           DateTime? @db.Date
   is_complete      Boolean? @default(value: false)
   level_content_id String
-  pause_at         DateTime? @db.Date @updatedAt
+  pause_at         DateTime[]
   start_at         DateTime? @db.Date @default(value: now())
   user_id          String @db.ObjectId
 }
