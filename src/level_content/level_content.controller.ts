@@ -6,7 +6,7 @@ import { ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { LevelContentEntity } from "./entities/level_content.entity";
 
 @Controller("level-content")
-@ApiTags('level-content')
+@ApiTags('Level content (Tasks or Lectures)')
 export class LevelContentController {
   constructor(private readonly levelContentService: LevelContentService) {
   }

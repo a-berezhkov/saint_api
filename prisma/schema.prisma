@@ -48,7 +48,7 @@ model chapter {
   title     String
 }
 
-model chapter_level {
+  model chapter_level {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
   chapter_id String @db.ObjectId
   is_draft   Boolean? @default(value: true)
@@ -77,7 +77,7 @@ model level_content {
   id               String  @id @default(auto()) @map("_id") @db.ObjectId
   chapter_level_id String @db.ObjectId
   lecture_id       String? @db.ObjectId
-  order            Int @default(value: 0)
+  order            Int? @default(value: 0)
   task_id          String? @db.ObjectId
 }
 
