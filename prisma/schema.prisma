@@ -44,7 +44,7 @@ model chapter {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
   course_id String  @db.ObjectId
   desc      String?
-  order     Int @default(value: 0)
+  order     Int? @default(value: 0)
   title     String
 }
 
@@ -113,5 +113,5 @@ model user_level_stat {
   level_content_id String
   pause_at         DateTime? @db.Date @updatedAt
   start_at         DateTime? @db.Date @default(value: now())
-  user_id          String
+  user_id          String @db.ObjectId
 }
