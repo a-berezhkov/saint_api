@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode } from "@nestjs/common";
 import { ChapterService } from "./chapter.service";
 import { CreateChapterDto } from "./dto/create-chapter.dto";
 import { UpdateChapterDto } from "./dto/update-chapter.dto";
@@ -13,6 +13,7 @@ export class ChapterController {
   }
 
   @ApiCreatedResponse({ type: ChapterEntity })
+  @HttpCode(201)
   @Post()
   async create(@Body() createChapterDto: CreateChapterDto) {
     const lastOrder = await this.chapterService.getMaxOrderInCourse(createChapterDto.course_id);

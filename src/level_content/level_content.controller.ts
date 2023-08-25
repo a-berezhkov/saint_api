@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode } from "@nestjs/common";
 import { LevelContentService } from "./level_content.service";
 import { CreateLevelContentDto } from "./dto/create-level_content.dto";
 import { UpdateLevelContentDto } from "./dto/update-level_content.dto";
@@ -12,6 +12,7 @@ export class LevelContentController {
   }
 
   @ApiCreatedResponse({ type: LevelContentEntity })
+  @HttpCode(201)
   @Post()
   create(@Body() createLevelContentDto: CreateLevelContentDto) {
     return this.levelContentService.create(createLevelContentDto);

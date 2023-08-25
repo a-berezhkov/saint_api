@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode } from "@nestjs/common";
 import { ChapterLevelService } from "./chapter_level.service";
 import { CreateChapterLevelDto } from "./dto/create-chapter_level.dto";
 import { UpdateChapterLevelDto } from "./dto/update-chapter_level.dto";
@@ -13,6 +13,7 @@ export class ChapterLevelController {
   }
 
   @ApiCreatedResponse({ type: ChapterLevelEntity })
+  @HttpCode(201)
   @Post()
   create(@Body() createChapterLevelDto: CreateChapterLevelDto) {
     return this.chapterLevelService.create(createChapterLevelDto);
