@@ -125,3 +125,10 @@ model task_choice {
   content String
   answers TaskAnswers[]
 }
+
+model task_fill_blanks {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  title   String
+  content String
+  answers String[]
+}

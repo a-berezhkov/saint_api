@@ -10,18 +10,20 @@ import { LevelContentModule } from "./level_content/level_content.module";
 import { UserLevelStatModule } from "./user_level_stat/user_level_stat.module";
 import { ChapterLevelModule } from "./chapter_level/chapter_level.module";
 import { TaskChoiceModule } from "./tasks/task_choice/task_choice.module";
+import { TaskFillBlanksModule } from './tasks/task_fill_blanks/task_fill_blanks.module';
 
 @Module({
   imports: [
     PrismaModule,
     UserModule,
     UserLevelStatModule,
-    TaskChoiceModule,
     CourseModule,
     ChapterModule,
     ChapterLevelModule,
     LevelContentModule,
-    LectureModule],
+    LectureModule,
+    TaskChoiceModule,
+    TaskFillBlanksModule],
   controllers: [AppController],
   providers: [AppService]
 })
