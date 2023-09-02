@@ -23,10 +23,9 @@ export class UserService {
     return this.prisma.user.findFirst({ where: { accessToken: token } });
   }
 
-  // TODO
-  // update(id: number, updateUserDto: UpdateUserDto) {
-  //   return `This action updates a #${id} user`;
-  // }n
+  update(id: string, updateUserDto: UpdateUserDto) {
+    return this.prisma.user.update({data: updateUserDto, where: {id}})
+  }
 
   remove(id: string) {
     return this.prisma.user.delete({ where: { id } });
