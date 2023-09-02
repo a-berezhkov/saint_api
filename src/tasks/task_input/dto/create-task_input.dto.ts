@@ -1,13 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreateTaskFillBlankDto {
-
+export class CreateTaskInputDto {
   @ApiProperty({
     description: "Content of task",
     required: true,
     type: String,
     nullable: false,
-    example: "<b> <div{1} Привет! <{2}> {3} "
+    example: "Вот такая задача, где проверять строки. Напишите 'Hello' "
   })
   content: string;
 
@@ -16,9 +15,9 @@ export class CreateTaskFillBlankDto {
     required: true,
     type: String,
     nullable: false,
-    example: [">", "div", "</b>"]
+    example: "Hello"
   })
-  answers: string[];
+  answers: string;
 
   @ApiProperty({
     description: "Template for answer",

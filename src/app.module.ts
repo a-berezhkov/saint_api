@@ -11,6 +11,8 @@ import { UserLevelStatModule } from "./user_level_stat/user_level_stat.module";
 import { ChapterLevelModule } from "./chapter_level/chapter_level.module";
 import { TaskChoiceModule } from "./tasks/task_choice/task_choice.module";
 import { TaskFillBlanksModule } from './tasks/task_fill_blanks/task_fill_blanks.module';
+import { TaskInputModule } from './tasks/task_input/task_input.module';
+import { TaskAbstractModule } from './tasks/task_abstract/task_abstract.module';
 
 @Module({
   imports: [
@@ -23,7 +25,9 @@ import { TaskFillBlanksModule } from './tasks/task_fill_blanks/task_fill_blanks.
     LevelContentModule,
     LectureModule,
     TaskChoiceModule,
-    TaskFillBlanksModule],
+    TaskFillBlanksModule,
+    TaskInputModule,
+    TaskAbstractModule],
   controllers: [AppController],
   providers: [AppService]
 })

@@ -1,13 +1,19 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { task_input } from "@prisma/client";
 
-export class CreateTaskFillBlankDto {
+export class TaskInputEntity implements task_input {
+  @ApiProperty({
+    description: "ID in mongo DB",
+    required: false
+  })
+  id: string;
 
   @ApiProperty({
     description: "Content of task",
     required: true,
     type: String,
     nullable: false,
-    example: "<b> <div{1} Привет! <{2}> {3} "
+    example: "Вот такая задача, где проверять строки. Напишите 'Hello' "
   })
   content: string;
 
@@ -16,9 +22,9 @@ export class CreateTaskFillBlankDto {
     required: true,
     type: String,
     nullable: false,
-    example: [">", "div", "</b>"]
+    example: "Hello"
   })
-  answers: string[];
+  answers: string;
 
   @ApiProperty({
     description: "Template for answer",
