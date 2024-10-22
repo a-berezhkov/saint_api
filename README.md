@@ -1,7 +1,5 @@
 ## 
-Тестовый сервер - http://94.198.216.76:3000
-
-API на тестовом сервере - http://94.198.216.76:3000/api
+ 
 
 Quick Start по PrismaORM - https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/mongodb-typescript-mongodb
 
